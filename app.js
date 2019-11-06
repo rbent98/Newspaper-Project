@@ -16,10 +16,5 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-// fetch(url)
-// .then(Response => Response.json())
-// .then(data => {
-//     // do something with data
-// });
 
 app.listen(8080);

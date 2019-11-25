@@ -10,6 +10,7 @@ draggedFill.addEventListener("dragend", dragEnd);
 
 // Loop through empty boxes and add listeners
 for (const empty of empties) {
+  empty.addEventListener("mouseover", hover);
     empty.addEventListener("dragstart", emptyStart);
   empty.addEventListener("dragover", dragOver);
   empty.addEventListener("dragenter", dragEnter);
@@ -18,6 +19,10 @@ for (const empty of empties) {
 }
 
 // Drag Functions
+
+function hover() {
+  
+}
 
 function dragStart() {
     console.log('start');

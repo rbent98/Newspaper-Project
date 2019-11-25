@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="format1.css">
+    <link rel="stylesheet" href="adminFormat1.css">
 
     <title>News Project</title>
   </head>
@@ -22,10 +22,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="Login.html">Login</a>
+                      <a class="nav-link" href="Login.html">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,11 +37,22 @@
                         <a class="dropdown-item" href="../Templates/template3.html">Type 3</a>
                       </div>
                     </li>
+                    <li>
+                      <a class="btn btn-light" href="#" role="button">
+                        Create An Article
+                      </a>
+                    </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
+                  <div class="dropdown btn-group dropleft">
+                      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Directions for reformating
+                      </button>
+                      <div class="dropdown-menu">
+                        <p class="dropdown-item">Drag and drop articles on this page to move them around.</p>
+                        <p class="dropdown-item">When an article is dropped, it will replace the article currently in that position.</p>
+                        <p class="dropdown-item">These changes will be reflected onto the associated page for you newspaper.</p>
+                      </div>
+                    </div>
                 </div>
               </nav>
               

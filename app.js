@@ -28,7 +28,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'testdb'
+    database: 'Newspaper_Project_DB'
 });
 
 connection.connect(function(error) {
@@ -88,22 +88,30 @@ function checkSignIn(req, res, next){
  });
  
  app.post('/login', function(req, res){
-    if(!req.body.id || !req.body.password){
-       res.render('login', {message: "Please enter both id and password"});
-    } else {
-    Users.filter(function(user){
-        if(user.id === req.body.id && user.password === req.body.password){
-            req.session.user = user;
-            res.redirect('/protectedAdmin');
-          }
-       });
-       res.render('login', {message: "Invalid credentials!"});
-    }
+    connection.query('SELECT * FROM users WHERE username = \''+req.body.username+'\';', function (err, rows, fields) {
+        if (err) throw err
+            if(rows[0].password === req.body.password) {
+                //sucssful login
+                var newspaper_id = rows[0].newspaper_id;
+                req.session.user = user;
+                connection.query('SELECT * FROM articles WHERE newspaper_id = \'' + newspaper_id + '\';'), (err, rows, fields)=> {
+                    if(err) throw err;
+                    res.redirect('/protectedAdmin', {articles: rows});
+                }           
+            } else
+                res.render('login', {message: "Invalid credentials!"});
+        })
  });
 
 
+
+ // add artical to DB
+app.get('/createarticle', function(req, res) {
+    res.render('createarticle')
+});
+
 // add artical to DB
-app.post('/createarticle', function(req, res) {
+app.post('/createarticle',checkSignIn, function(req, res) {
     connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
         if (err) throw err
 
@@ -115,28 +123,17 @@ app.post('/createarticle', function(req, res) {
 });
 
 
-// update db
-app.post('/api', function(req, res) {
-    
-
-    // add to DB 
-    // userId = req.id
-    // articleId = req.articleID
-    // title = req.title
-    // body = req.body
-});
 
 // delete db
-app.delete('/delete', function(req, res) {
+app.delete('/delete', checkSignIn,function(req, res) {
     
     // find entry with article-id then delete
     // 
 });
-// routes
 
 app.get('/', function(req, res) {
     res.render('index');
 });
 
 
-app.listen(8080);
+app.listen(8080)

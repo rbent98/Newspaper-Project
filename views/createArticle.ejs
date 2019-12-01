@@ -1,0 +1,227 @@
+<html>
+  <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Create Article</title>
+  <style>
+	p {
+		font-size: 1.1rem
+	}
+	#toolbar {
+	    text-align: center;
+	    background-color: rgb(185, 229, 255);
+	    padding: 10px 0px;
+	}
+	.toolButton {
+		border-left: 1px solid #a3abcc;
+		border-right: 1px solid #a3abcc;
+		display: inline;
+		margin: 35px -1px;
+		padding: 5px 5px
+	}
+	
+	.text {
+		background-color: #efefef; 
+		border-color:#aaaaaa;
+		border-radius: .25rem;
+	}
+	
+	#titleText {
+		font-size: 36px;
+		text-align: center;
+		font-family: Times;
+	}
+	
+	#bodyText {
+		width: 75%;
+		height: 50%;
+		margin: auto;
+		padding: 1em;
+		font-size: 16px;
+		font-family: Times;
+		text-align: left;
+		border-radius: .25rem;
+		top: 20px;
+		position: relative
+	}
+	
+	#linkInput {
+		border-style: solid;
+		position: relative;
+		top: 20px;
+		background-color: #efefef; 
+		border-color: #aaaaaa;
+		border-radius: .25rem;
+		width: 375px;
+	}
+	
+	#bodyDiv {
+		text-align: center;
+		margin: auto;
+	}
+	
+	.addButton {
+		display: block;
+	}
+  </style>
+  </head>
+
+  <body id="body">
+  
+	<div id="toolbar" style="position:fixed;width:100%;z-index:1">
+	  <div class="toolButton">
+		<p style="display:inline">Font Family</p>
+		<input id="fontFamily" type="text"></input>
+		<button type = "button" onclick="changeFontFamily()">Submit</button>
+	  </div>
+	  <div class="toolButton">
+		<p style="display:inline">Font Size</p>
+		<input id="fontSize" type="text" style="width:40px"></input>
+		<button onclick="changeFontSize()">Submit</button>
+	  </div>
+	  <div class="toolButton">
+		<p style="display:inline">Alignment</p>
+		<input type="text" id="textAlign" style="width:100px"></input>
+		<button id="fileButton" onclick="changeAlign()">Submit</button>
+	  </div>
+	  <div class="toolButton">
+		<input type="file" id="fileInput"></input>
+		<button id="fileButton" onclick="submitFile()">Submit</button>
+	  </div>
+	</div>
+	<br /> <!--the different buttons-->
+	<br />
+	
+	<form style="width:98%;height:98%;margin:auto " action="/createarticle" method="POST"
+	onclick="select(event.target)">
+	  <div style="text-align:center;position:relative;top:20px">
+	  <textarea class="text" id="titleText" name="titleText" style="font-family:Times;font-size:36px;text-align:center" enctype='application/x-www-form-urlencoded'>Title</textarea></div> <!--the title of the news paper-->
+		<br />
+		<div id="bodyDiv">
+			<!--<button class="addButton">...</button>-->
+			<textarea class="text" id="bodyText" name="bodyText" style="font-family:Times;font-size:16px;text-align:left" enctype='application/x-www-form-urlencoded'>Body</textarea><br /> <!--the body of the news paper-->
+		</div>
+		<div style="text-align:center;position:relative;top:20px">
+			<input type="text" id="linkInput" name="linkInput" placeholder="[Optional]YouTube video link"></input>
+		</div>
+		<div> <input type="hidden" id="titleTextFont" name="titleTextFont" value="Times"></input> </div>
+		<div> <input type="hidden" id="titleTextFontSize" name="titleTextFontSize" value="36px"></input> </div>
+		<div> <input type="hidden" id="titleTextAlignment" name="titleTextAlignment" value="center"></input> </div>
+		<div> <input type="hidden" id="bodyTextFont" name="bodyTextFont" value="Times"></input> </div>
+		<div> <input type="hidden" id="bodyTextFontSize" name="bodyTextFontSize" value="36px"></input> </div>
+		<div> <input type="hidden" id="bodyTextAlignment" name="bodyTextAlignment" value="center"></input> </div>
+		<button type="submit" class="btn btn-primary"style="float: right;" enctype='application/x-www-form-urlencoded'>Submit Article</button>	
+	</form>
+	
+  <script>
+  
+	var currentSelect = null;
+  
+	function select(target) {
+		if(target.className == "addButton") {
+			addBody(target.parentNode);
+			return;
+		}
+		if(currentSelect != null && currentSelect.id != target.id)
+			currentSelect.style.border = "1px solid #aaaaaa";
+			
+		if(searchString(target.className, "text")) {
+			console.log(target.id);
+			currentSelect = document.getElementById(target.id);
+			currentSelect.style.border = "2px blue solid";
+			changeFields(currentSelect);
+		}
+		else {
+			currentSelect = null;
+			changeFields(null);
+		}
+	}
+	
+	function changeFields(target) {
+		if(target == null) {
+			document.getElementById("fontFamily").value = "";
+			document.getElementById("fontSize").value = "";
+			document.getElementById("textAlign").value = "";
+			return;
+		}
+		console.log("Changing fields: "+target.id);
+		document.getElementById("fontFamily").value = target.style.fontFamily;
+		document.getElementById("fontSize").value = target.style.fontSize;
+		document.getElementById("textAlign").value = target.style.textAlign;
+	}
+	
+	function searchString(str, query) {
+		var classNames = str.split(" ");
+		for(var i=0; i<classNames.length; i++)
+			if(classNames[i] == query) return true;
+		return false;
+	}
+	
+	/*function changeColors() {
+		document.body.style.backgroundColor = document.getElementById("backColorPick").value;
+		var textAreas = document.getElementsByClassName("text");
+		var color = document.getElementById("textBorderColor").value; 
+		var i;
+		for(i=0; i < textAreas.length; i++) {
+		  textAreas[i].style.borderColor = color;
+		}
+	} */
+	
+	function changeFontFamily() {
+		if(currentSelect == null) {
+			window.alert("Nothing is selected.");
+			return;
+		}
+		currentSelect.style.fontFamily = 
+			document.getElementById("fontFamily").value;
+			
+		if(currentSelect.id === "bodyText") {
+			document.getElementById("bodyTextAlignment").value = currentSelect.style.value;
+		} else {
+			document.getElementById("titleTextAlignment").value = currentSelect.style.value;
+		}
+	}
+	
+	function changeFontSize() {
+		if(currentSelect == null) {
+			window.alert("Nothing is selected.");
+			return;
+		}
+		currentSelect.style.fontSize = 
+			document.getElementById("fontSize").value;
+		if(currentSelect.id === "bodyText") {
+			document.getElementById("bodyTextFontSize").value = currentSelect.style.fontSize;
+		} else {
+			document.getElementById("titleTextFontSize").value = currentSelect.style.fontSize;
+		}
+	}
+	
+	function changeAlign() {
+		if(currentSelect == null) {
+			window.alert("Nothing is selected.");
+			return;
+		}
+		currentSelect.style.textAlign = 
+			document.getElementById("textAlign").value;
+		if(currentSelect.id === "bodyText") {
+			document.getElementById("bodyTextFont").value = currentSelect.style.textAlign;
+		} else {
+			document.getElementById("titleTextFont").value = currentSelect.style.textAlign;
+		}
+	}
+	
+	function submitFile() {
+		console.log(document.getElementById("fileInput").value);
+	}
+	
+	/*function addBody(node) {
+		var elem = document.createElement("TEXTAREA");
+		elem.className = "text bodyText";
+		elem.id = "bodyText" + (++bodyCount);
+		node.appendChild(elem);
+	}*/
+	
+  </script>
+  </body>
+</html>

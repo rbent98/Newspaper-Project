@@ -2,18 +2,6 @@ a{
     color: black;
 }
 
-.Login{
-    margin-right: 70%;
-}
-
-.arts{
-    margin-left: 5%;
-    margin-right: 5%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto;
-}
-
 .navbar{
     background-color: white;
     border: .1rem solid black;
@@ -28,20 +16,28 @@ a{
     font-size: 175%;
 }
 
-.card{
-    margin-bottom: 4%;
-    width: 100%;
-    height: 100%;
-}
-
-.big-boy{
-    grid-column: 1/ span 2;
-    grid-row:1/span 2;
-}
-
 .nav-tabs{
     padding-left: 5%;
     background: white;
     border: .1rem solid black;
     
+}
+
+.Login{
+    margin-right: 10%;
+}
+
+.newsSelect{
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.newsDrop{
+    padding-right: 10%;
+}
+
+.content {
+    width:100%;
+    display: grid;
+    grid-template-columns: auto auto;
 }

@@ -45,3 +45,7 @@ a{
 .hovered {
     border: dashed 10px black;
 }
+
+.btn-custom {
+    border: solid 5px red;
+}

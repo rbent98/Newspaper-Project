@@ -1,6 +1,6 @@
 const fill = document.querySelectorAll(".fill");
 const empties = document.querySelectorAll(".empty");
-var name, original, temp;
+var name, original, temp, butDel;
 
 // Fill listeners
 for(const draggedFill of fill){
@@ -11,7 +11,8 @@ draggedFill.addEventListener("dragend", dragEnd);
 // Loop through empty boxes and add listeners
 for (const empty of empties) {
   empty.addEventListener("mouseover", hover);
-    empty.addEventListener("dragstart", emptyStart);
+  empty.addEventListener("mouseout", leaveHover);
+  empty.addEventListener("dragstart", emptyStart);
   empty.addEventListener("dragover", dragOver);
   empty.addEventListener("dragenter", dragEnter);
   empty.addEventListener("dragleave", dragLeave);
@@ -21,7 +22,17 @@ for (const empty of empties) {
 // Drag Functions
 
 function hover() {
-  
+  console.log("Large fat men");
+  butDel = this.getElementsByTagName("button");
+  console.log(butDel);
+  console.log(butDel[0].className);
+  butDel[0].className = butDel[0].className.substr(0, butDel[0].className.length - 10);
+}
+
+function leaveHover() {
+  console.log("it works");
+  butDel = this.getElementsByTagName("button");
+  butDel[0].className += " invisible";
 }
 
 function dragStart() {

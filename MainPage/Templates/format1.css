@@ -28,15 +28,10 @@ a{
     height: 100%;
 }
 
-.hold {
-    border: solid 5px #ccc;
-}
-
 .big-boy{
     grid-column: 1/ span 2;
     grid-row:1/span 2;
 }
-
 
 .hold {
     border: solid 5px #ccc;
@@ -44,4 +39,8 @@ a{
 
 .hovered {
     border: dashed 10px black;
+}
+
+.btn-custom {
+    border: solid 5px red;
 }

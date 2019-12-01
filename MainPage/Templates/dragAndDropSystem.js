@@ -26,13 +26,17 @@ function hover() {
   butDel = this.getElementsByTagName("button");
   console.log(butDel);
   console.log(butDel[0].className);
-  butDel[0].className = butDel[0].className.substr(0, butDel[0].className.length - 10);
+
+  if(butDel[0].className.includes(" invisible"))
+    butDel[0].className = butDel[0].className.substr(0, butDel[0].className.length - 10);
 }
 
 function leaveHover() {
   console.log("it works");
   butDel = this.getElementsByTagName("button");
-  butDel[0].className += " invisible";
+
+  if(!butDel[0].className.includes(" invisible"))
+    butDel[0].className += " invisible";
 }
 
 function dragStart() {

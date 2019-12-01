@@ -1,9 +1,21 @@
-a{
-    color: black;
-}
-
 body{
     background-image: url("../york.jpg");
+}
+
+.navbar{
+    background-color: white;
+    border: .1rem solid black;
+}
+
+.nav-tabs{
+    padding-left: 5%;
+    background: white;
+    border: .1rem solid black;
+    
+}
+
+a{
+    color: black;
 }
 
 .arts{
@@ -12,11 +24,6 @@ body{
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: auto;
-}
-
-.navbar{
-    background-color: white;
-    border: .1rem solid black;
 }
 
 .btn{
@@ -29,9 +36,12 @@ body{
 }
 
 .card{
-    margin-bottom: 4%;
     width: 100%;
     height: 100%;
+}
+
+.hold {
+    border: solid 5px #ccc;
 }
 
 .big-boy{
@@ -39,9 +49,14 @@ body{
     grid-row:1/span 2;
 }
 
-.nav-tabs{
-    padding-left: 5%;
-    background: white;
-    border: .1rem solid black;
-    
+.hold {
+    border: solid 5px #ccc;
+  }
+
+.hovered {
+    border: dashed 10px black;
+}
+
+.btn-custom {
+    border: solid 5px red;
 }

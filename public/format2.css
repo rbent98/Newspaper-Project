@@ -1,0 +1,61 @@
+a{
+    color: black;
+}
+
+.arts{
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto;
+}
+
+.navbar{
+    justify-content: center;
+    background-color: black;
+}
+
+.navbar-brand{
+    justify-content: center;
+    font-size: 300%;
+}
+
+.headlinesContainer{
+    padding-left: 1%;
+    border: .2rem solid black;
+}
+
+.mainArticle{
+    background-color: black;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.headlineText{
+    color: white;
+}
+
+.card{
+    margin-bottom: 4%;
+    width: 100%;
+    height: 100%;
+    grid-column: span 2;
+    grid-row: span 4;
+}
+
+.small-boy{
+    margin-bottom: 4%;
+    width: 100%;
+    height: 100%;
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.big-boy{
+    margin-bottom: 4%;
+    width: 100%;
+    height: 100%;
+    grid-column: 3/ span 4;
+    grid-row:1/span 8;
+}
